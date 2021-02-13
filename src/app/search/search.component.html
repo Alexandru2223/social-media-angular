@@ -1,0 +1,49 @@
+<app-menu></app-menu>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="row">
+  <div style="border-style: outset" class="left">
+
+    <h1 align="center"> My Profile </h1>
+    <br style="line-height: 100">
+    <a href="">
+      <img src="{{'data:image/jpg;base64,' + profile.avatar}}" width="40%" height="20%" class="profileAvatar">
+    </a>
+    <h1 align="center">{{profile.fullName}}</h1>
+    <h3 align="center">Total likes: {{totalLikes}}</h3>
+
+  </div>
+  <div style="border-style: outset" class="middle ">
+    <div *ngFor="let artist of artists" class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <table class="table table-striped">
+
+            <tbody>
+            <tr>
+              <td style="float: left;">
+                <img src="{{'data:image/jpg;base64,' + artist.avatar}}" width="60px" height="60px" class="profileAvatar">
+              </td>
+              <td style="float: left;font-size:40px;color: blue;">
+                {{artist.fullName}}
+              </td>
+              <div *ngFor="let paint of artist.paintings">
+                <td style="float: left">
+                  <img src="{{'data:image/jpg;base64,' + paint.image}}" width="60px" height="60px" >
+                </td>
+
+              </div>
+            </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="border-style: outset" class="right" >
+
+
+
+  </div>
+</div>
+

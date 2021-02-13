@@ -1,0 +1,31 @@
+<app-menu></app-menu>
+<div class="card my-5" xmlns:http="http://www.w3.org/1999/xhtml">
+  <div class="card-body">
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Born</th>
+        <th scope="col">Died</th>
+        <th scope="col">Country</th>
+        <th scope="col">Paintings</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let artist of artists">
+        <td>{{ artist.artistId }}</td>
+        <td>{{ artist.firstName }}</td>
+        <td>{{ artist.lastName }}</td>
+        <td>{{ artist.born | date }}</td>
+        <td>{{ artist.died | date }}</td>
+        <td>{{ artist.country }}</td>
+        <td>
+          <a href="http://localhost:4200/paintings/{{artist.artistId}}" class="btn btn-info">Click</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

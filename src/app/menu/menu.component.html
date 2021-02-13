@@ -1,0 +1,69 @@
+<header>
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <div><a href="/" class="navbar-brand">PIBD</a></div>
+    <ul class="navbar-nav">
+      <li><a *ngIf="!isLoggedIn" class="nav-link" href="/register">Register</a></li>
+    </ul>
+
+
+    <ul class = "navbar-nav">
+      <li>
+        <ng-template #content let-modal>
+          <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Share painting</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label >Name</label>
+                <div class="input-group">
+                  <input name="name" class="form-control" [ngModel]="painting?.name" (ngModelChange)="painting.name = $event">
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Text</label>
+                <div class="input-group">
+                  <input name="text" class="form-control" [ngModel]="painting?.text" (ngModelChange)="painting.text = $event">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="image-upload-container btn btn-bwm">
+                  <span>Select Image  </span>
+                  <input type="file" accept="image/*" (change)="changeListener($event)">
+                </label>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark" (click)="modal.close(); postPainting()">Save</button>
+          </div>
+        </ng-template>
+        <a *ngIf="isLoggedIn" class="nav-link" (click)="open(content)">Post a picture</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav navbar-collapse" >
+      <form *ngIf="isLoggedIn" class="form-inline">
+        <input [(ngModel)]="search" name="search" class="form-control mr-sm-2" type="text" />
+        <button routerLink="/search/{{search}}" (click)="redirect()" class="btn btn-primary my-2 my-sm-0" type="submit">
+          Search
+        </button>
+      </form>
+    </ul>
+    <ul class="navbar-nav navbar-collapse justify-content-end" >
+      <li>
+        <a *ngIf="isLoggedIn" class="nav-link" href="/logout" (click)=handleLogout()>Logout</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav">
+      <li>
+        <a *ngIf="!isLoggedIn" class="nav-link" href="/login">Login</a>
+      </li>
+    </ul>
+
+
+  </nav>
+</header>
+

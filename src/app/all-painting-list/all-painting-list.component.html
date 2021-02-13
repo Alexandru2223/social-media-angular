@@ -1,0 +1,70 @@
+<app-menu></app-menu>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="row">
+  <div style="border-style: outset" class="left">
+
+    <h1 align="center"> My Profile </h1>
+    <br style="line-height: 100">
+    <a href="">
+      <img src="{{'data:image/jpg;base64,' + profile.avatar}}" width="40%" height="20%" class="profileAvatar">
+    </a>
+    <h1 align="center">{{profile.fullName}}</h1>
+    <h3 align="center">Total likes: {{totalLikes}}</h3>
+
+  </div>
+  <div style="border-style: outset" class="middle ">
+<div  *ngFor="let painting of paintings">
+<div *ngFor="let artist of painting.artists"  >
+  <div class="col-md-7 center" >
+    <div class="social-feed-separated">
+      <div class="social-avatar">
+        <a href="">
+          <img src="{{'data:image/jpg;base64,' + artist.avatar}}" width="40" height="40" class="center">
+        </a>
+      </div>
+
+      <div style="width: 100%" class="social-feed-box">
+        <div *ngIf="artist.fullName === profile.fullName" class="pull-right social-action dropdown">
+          <button data-toggle="dropdown" class="dropdown">
+            <i class="fa fa-angle-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a (click)="deletePainting(painting.paintingId)"> Delete painting </a>
+          </div>
+        </div>
+        <div class="social-avatar">
+          <a href="#">
+            {{artist.fullName}}
+          </a>
+          <small class="text-muted" >{{painting.date | date:'MMM d - y h:mm a' }}</small>
+        </div>
+        <div class="social-body">
+          <p>
+           {{painting.text}}
+          </p>
+          <img src="{{'data:image/jpg;base64,' + painting.image}}" width="100%" height="100%" >
+          <span style="color: blue"><i class="fa fa-thumbs-up" ></i>{{painting.likes}} {{painting.likes > 1 ? 'likes':'like'}}</span>
+          <br>
+          <div class="btn-group">
+            <button style="font-size: 21px" class="btn btn-white btn-xs" (click)="like(painting.paintingId)" ><i class="fa fa-thumbs-up" ></i> {{colorButton(painting.paintingId) ? 'Unlike':'Like'}}</button>
+            <button style="font-size: 21px" class="btn btn-white btn-xs" routerLink="/comment/{{painting.paintingId}}"><i class="fa fa-comments"></i> Comment</button>
+            <button style="font-size: 22px" class="btn btn-white btn-xs"><i class="fa fa-share"></i> Share</button>
+          </div>
+        </div>
+
+
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+</div >
+  <div style="border-style: outset" class="right" >
+
+
+
+  </div>
+</div>
+
